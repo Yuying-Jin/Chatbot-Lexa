@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+   <children>
+      <ImageView fitHeight="622.0" fitWidth="880.0" opacity="0.5" pickOnBounds="true">
+         <image>
+            <Image url="@../image/Admin.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="233.0" layoutY="78.0" prefHeight="59.0" prefWidth="448.0" text="Welcome Admin">
+         <font>
+            <Font name="Arial Bold" size="52.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnMAccount" layoutX="488.0" layoutY="406.0" mnemonicParsing="false" onAction="#AdmintoMngAcc" prefHeight="55.0" prefWidth="165.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: #FFAF60;" text="Manage Account" AnchorPane.topAnchor="420.0">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="btnMRecipe" layoutX="490.0" layoutY="298.0" mnemonicParsing="false" onAction="#AdmintoMngRecipe" prefHeight="55.0" prefWidth="165.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: #FFCBB3;" text="Manage Recipe">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="btnLogout" layoutX="24.0" layoutY="28.0" mnemonicParsing="false" onAction="#Logout" prefHeight="32.0" prefWidth="91.0" style="-fx-background-radius: 50; -fx-background-radius: 50; -fx-background-color: #DEDEBE;" text="LogOut">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

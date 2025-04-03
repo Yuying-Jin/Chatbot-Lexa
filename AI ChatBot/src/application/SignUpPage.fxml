@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="880.0" style="-fx-background-color: #FFF8DC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SignUpPageController">
+   <children>
+      <ImageView fitHeight="378.0" fitWidth="273.0" layoutX="617.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/Bob.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="164.0" layoutX="351.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/profile.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="231.0" layoutY="295.0" text="Name" textFill="#133dcb">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="222.0" layoutY="400.0" text="Password" textFill="#133dcb">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="249.0" layoutY="190.0" text="Create Your Account">
+         <font>
+            <Font name="Arial Bold" size="31.0" />
+         </font>
+      </Label>
+      <TextField fx:id="signUpUsernameField" layoutX="366.0" layoutY="294.0" prefHeight="26.0" prefWidth="173.0" style="-fx-background-radius: 50; -fx-border-radius: 50;" />
+      <Button fx:id="btnBack" layoutX="28.0" layoutY="25.0" mnemonicParsing="false" onAction="#BacktoLogin" prefHeight="38.0" prefWidth="90.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: #B0C4DE;" text="Back">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCreate" layoutX="348.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="41.0" prefWidth="124.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: #FFC78E;" text="Create">
+         <font>
+            <Font name="Arial Bold" size="19.0" />
+         </font>
+      </Button>
+      <PasswordField fx:id="signUpPasswordField" layoutX="366.0" layoutY="401.0" prefWidth="173.0" style="-fx-background-radius: 50; -fx-border-radius: 50;" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="880.0" style="-fx-background-color: #FFF8DC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ManageAccountController">
+   <children>
+      <TableView fx:id="accountTableView" layoutX="170.0" layoutY="119.0" prefHeight="350.0" prefWidth="550.0">
+        <columns>
+          <TableColumn fx:id="columnName" prefWidth="251.0" text="Account Name" />
+          <TableColumn fx:id="columnPassword" minWidth="-1.0" prefWidth="299.5" text="Password" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnBack" layoutX="28.0" layoutY="31.0" mnemonicParsing="false" onAction="#MngAcctoAdmin" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 50; -fx-border-radius: 50;" text="Back">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+   <Button fx:id="btnDeleteUser" layoutX="355.0" layoutY="530.0" mnemonicParsing="false" onAction="#handleDeleteUser" prefHeight="45.0" prefWidth="161.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 50; -fx-border-radius: 50;" text="Delete Selected User">
+      <font>
+         <Font name="Arial Bold" size="14.0" />
+      </font></Button>
+</AnchorPane>
