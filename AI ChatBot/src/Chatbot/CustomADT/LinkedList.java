@@ -1,5 +1,5 @@
 package Chatbot.CustomADT;
 
-public class List {
+public class LinkedList {
 
 }
