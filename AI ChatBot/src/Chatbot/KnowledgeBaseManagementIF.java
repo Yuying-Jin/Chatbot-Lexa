@@ -1,5 +1,5 @@
 package Chatbot;
 
-public interface KnowledgeBaseManagementIF {
+public interface KnowledgeBaseManagementIF<T> {
 
 }
