@@ -3,6 +3,7 @@ package application;
 import java.io.File;
 import java.util.ArrayList;
 
+import Chatbot.CustomADT.ArrayQueue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -30,6 +31,17 @@ public class CreateRecipeController {
     private File selectedImageFile; 
     @FXML
     private Configure configure = Configure.getInstance();  // get Configure object
+    
+    
+    //6205
+    private ArrayQueue pq;
+    
+    public void initialize() {
+        // Retrieve the instance of Configure and the PriorityQueue
+        Configure configure = Configure.getInstance();
+        this.pq = configure.getPriorityQueue();
+    }
+    //
     
     
     // In recipeShow, it allows to add image to the recipe
@@ -74,9 +86,17 @@ public class CreateRecipeController {
         
         String imagePath = selectedImageFile != null ? selectedImageFile.toURI().toString() : null;
         Recipe newRecipe = new Recipe(dishName, type, ingredients, directionsText, imagePath);
+        configure.getRecipes().add(newRecipe);
+
+        
+        // 6205
+        pq.add(newRecipe);
+        pq.displayQueue();
+        //
+        
+        
         
         // After created recipe, the TextFields in CreateRecipe will be removed
-        configure.getRecipes().add(newRecipe);
         txtName.clear();
         txtType.clear();
         txtIngredient.clear();

@@ -74,7 +74,7 @@ public class MainController {
     public void handleLogin(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        System.out.print("username = " + usernameField.getText() + "  password =" + passwordField.getText() );
+//        System.out.print("username = " + usernameField.getText() + "  password =" + passwordField.getText() );
         
         Configure configure = Configure.getInstance();
         
@@ -220,6 +220,11 @@ public class MainController {
     
     public void Logout(ActionEvent event) {
     	switchScene(event, "LoginPage.fxml");
+    }
+    
+    //6205 added
+    public void UsertoQuery(ActionEvent event) {
+    	switchScene(event, "/UI_Controller/ChatBot.fxml");
     }
     
 }

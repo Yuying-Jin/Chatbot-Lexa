@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import Chatbot.CustomADT.ArrayQueue;
+
 public class Configure {
 	
 	private static Configure instance = null;
@@ -35,10 +37,15 @@ public class Configure {
     private Set<User> users = new HashSet<>();
     private Set<Admin> admins = new HashSet<>();
 
-    
+    // 6205
+    private ArrayQueue pq;
+    private String currentUser;
+    //
     
 	public Configure() {
+		pq = new ArrayQueue(10);
 		initializeData();
+
 	}
 	
 	public static Configure getInstance() {
@@ -179,30 +186,124 @@ public class Configure {
         i21.add("cinnamon");
         i21.add("vegetable oil");
 
-        recipes.add(new Recipe("Broccoli Alfredo Pasta", "Main dish", i0, "Cook farfalle pasta and broccoli, prepare a creamy cheese sauce, then combine everything and garnish with parsley for a delicious dish.", "image/BroccoliAlfredoPasta.jpg"));
-        recipes.add(new Recipe("Hawaiian Pizza", "Main dish", i1, "Prepare and assemble a pizza with bacon, caramelized pineapple, and toppings on rolled dough, then bake at 500°F until golden and bubbly.", "image/HawaiianPizza.jpg"));
-        recipes.add(new Recipe("Holiday Potatoes", "Appetizer", i2, "Boil potatoes until tender, then mash with butter, cream cheese, sour cream, and milk until fluffy, garnish with parsley and serve.", "image/HolidayPotatoes.jpg"));
-        recipes.add(new Recipe("Polish Potato Soup", "Soup", i3, "Cook kielbasa with vegetables, simmer potatoes with broth, pickles, and dill, mash some potatoes, add reserved slices, and finish with sour cream and dill.", "image/PolishPotatoSoup.jpg"));
-        recipes.add(new Recipe("Sweet Lime Iced Tea", "Drinks", i4, "Steep tea bags in boiling water, mix in sugar and lime juice, cool, and refrigerate until cold.", "image/SweetLimeIcedTea.jpg"));
-        recipes.add(new Recipe("South Carolina Sweet Tea", "Drinks", i5, "Brew tea in a coffee maker, mix with sugar in a pitcher, fill with tea, cool to room temperature, and refrigerate.", "image/SouthCarolinaSweetTea.jpg"));     
-        recipes.add(new Recipe("Eggplant Appetizer", "Appetizer", i6, "Cook eggplant, bell pepper, tomato, and onion with a sugar, salt, oil, vinegar, and water mixture for 30 minutes, then serve warm.", "image/EggplantAppetizer.jpg"));
-        recipes.add(new Recipe("Paella", "Main dish", i11, "Sauté onion, bell pepper, chorizo, and chili in a paella pan, then cook rice with tomatoes, spices, stock, and seafood, simmering until tender before serving.", "image/paella.jpg"));
-        recipes.add(new Recipe("Chocolate Lava Cake", "Dessert", i12, "Melt butter and dark chocolate together, whisk in sugar, eggs, and vanilla, then fold in flour and salt. Pour mixture into greased ramekins and bake at 425°F (220°C) for 12-14 minutes until the edges are set but the center is still soft. Dust with powdered sugar and serve warm.", "image/chocolate_lava_cake.png"));
-        recipes.add(new Recipe("Tiramisu", "Dessert", i13, "Whisk mascarpone with sugar and whipped cream. Dip ladyfingers into espresso and coffee liqueur, then layer with mascarpone mixture. Repeat layers and dust with cocoa powder. Refrigerate for at least 4 hours before serving.", "image/tiramisu.png"));
-        recipes.add(new Recipe("Lemon Meringue Pie", "Dessert", i14, "Make lemon filling by combining lemon juice, sugar, cornstarch, and water, then cook until thickened. Whisk in egg yolks, pour into pie crust. Beat egg whites with cream of tartar and sugar to stiff peaks, spread over pie, and bake at 350°F (175°C) until meringue is golden.", "image/lemon_meringue_pie.png"));
-        recipes.add(new Recipe("Cheesecake", "Dessert", i15, "Mix cream cheese, sugar, and vanilla until smooth. Add eggs and heavy cream, then pour into graham cracker crust. Bake at 325°F (160°C) for 45-50 minutes, then top with sour cream and bake for another 10 minutes. Chill before serving.", "image/cheesecake.png"));
-        recipes.add(new Recipe("Apple Crumble", "Dessert", i16, "Toss sliced apples with sugar, cinnamon, and nutmeg, then place in a baking dish. Mix oats, flour, and butter until crumbly, then sprinkle over apples. Bake at 350°F (175°C) for 35-40 minutes until golden and bubbly.", "image/apple_crumble.png"));
-        recipes.add(new Recipe("Panna Cotta", "Dessert", i17, "Heat cream, milk, and sugar until sugar dissolves, then add scraped vanilla bean. Dissolve gelatin in water and mix into the cream mixture. Pour into molds and refrigerate for 4 hours or overnight. Serve with fresh berries or fruit sauce.", "image/panna_cotta.png"));
-        recipes.add(new Recipe("Strawberry Shortcake", "Dessert", i18, "Toss strawberries with sugar and let sit. Mix flour, baking powder, and butter to form a dough, then add milk. Bake biscuits at 400°F (200°C) for 12-15 minutes. Serve with whipped cream and macerated strawberries.", "image/strawberry_shortcake.png"));
-        recipes.add(new Recipe("Baklava", "Dessert", i19, "Layer phyllo dough with chopped nuts and cinnamon, then brush with melted butter. Bake at 350°F (175°C) for 30-40 minutes until golden. Pour hot syrup made of honey, sugar, lemon juice over the baklava and let cool.", "image/baklava.png"));
-        recipes.add(new Recipe("Creme Brûlée", "Dessert", i20, "Heat cream and vanilla to a simmer. Whisk together egg yolks and sugar, then temper with hot cream. Pour mixture into ramekins and bake at 325°F (160°C) for 45 minutes. Chill, then caramelize the top with brown sugar using a torch before serving.", "image/creme_brulee.png"));
-        recipes.add(new Recipe("Churros", "Dessert", i21, "Boil water, butter, and sugar, then add flour and stir until dough forms. Let cool, then beat in eggs. Pipe dough into hot oil and fry until golden. Toss in cinnamon sugar and serve with chocolate dipping sauce.", "image/churros.png"));
         
+		Recipe recipe1 = new Recipe("Broccoli Alfredo Pasta", "Main dish", i0, 
+		"Cook farfalle pasta and broccoli, prepare a creamy cheese sauce, then combine everything and garnish with parsley for a delicious dish.", 
+		"image/BroccoliAlfredoPasta.jpg");
+		recipes.add(recipe1);
+		pq.add(recipe1);
+		
+		Recipe recipe2 = new Recipe("Hawaiian Pizza", "Main dish", i1, 
+		"Prepare and assemble a pizza with bacon, caramelized pineapple, and toppings on rolled dough, then bake at 500°F until golden and bubbly.", 
+		"image/HawaiianPizza.jpg");
+		recipes.add(recipe2);
+		pq.add(recipe2);
+		
+		Recipe recipe3 = new Recipe("Holiday Potatoes", "Appetizer", i2, 
+		"Boil potatoes until tender, then mash with butter, cream cheese, sour cream, and milk until fluffy, garnish with parsley and serve.", 
+		"image/HolidayPotatoes.jpg");
+		recipes.add(recipe3);
+		pq.add(recipe3);
+		
+		Recipe recipe4 = new Recipe("Polish Potato Soup", "Soup", i3, 
+		"Cook kielbasa with vegetables, simmer potatoes with broth, pickles, and dill, mash some potatoes, add reserved slices, and finish with sour cream and dill.", 
+		"image/PolishPotatoSoup.jpg");
+		recipes.add(recipe4);
+		pq.add(recipe4);
+		
+		Recipe recipe5 = new Recipe("Sweet Lime Iced Tea", "Drinks", i4, 
+		"Steep tea bags in boiling water, mix in sugar and lime juice, cool, and refrigerate until cold.", 
+		"image/SweetLimeIcedTea.jpg");
+		recipes.add(recipe5);
+		pq.add(recipe5);
+		
+		Recipe recipe6 = new Recipe("South Carolina Sweet Tea", "Drinks", i5, 
+		"Brew tea in a coffee maker, mix with sugar in a pitcher, fill with tea, cool to room temperature, and refrigerate.", 
+		"image/SouthCarolinaSweetTea.jpg");
+		recipes.add(recipe6);
+		pq.add(recipe6);
+		
+		Recipe recipe7 = new Recipe("Eggplant Appetizer", "Appetizer", i6, 
+		"Cook eggplant, bell pepper, tomato, and onion with a sugar, salt, oil, vinegar, and water mixture for 30 minutes, then serve warm.", 
+		"image/EggplantAppetizer.jpg");
+		recipes.add(recipe7);
+		pq.add(recipe7);
+		
+		Recipe recipe8 = new Recipe("Paella", "Main dish", i11, 
+		"Sauté onion, bell pepper, chorizo, and chili in a paella pan, then cook rice with tomatoes, spices, stock, and seafood, simmering until tender before serving.", 
+		"image/paella.jpg");
+		recipes.add(recipe8);
+		pq.add(recipe8);
+		
+		Recipe recipe9 = new Recipe("Chocolate Lava Cake", "Dessert", i12, 
+		"Melt butter and dark chocolate together, whisk in sugar, eggs, and vanilla, then fold in flour and salt. Pour mixture into greased ramekins and bake at 425°F (220°C) for 12-14 minutes until the edges are set but the center is still soft. Dust with powdered sugar and serve warm.", 
+		"image/chocolate_lava_cake.png");
+		recipes.add(recipe9);
+		pq.add(recipe9);
+		
+		Recipe recipe10 = new Recipe("Tiramisu", "Dessert", i13, 
+		"Whisk mascarpone with sugar and whipped cream. Dip ladyfingers into espresso and coffee liqueur, then layer with mascarpone mixture. Repeat layers and dust with cocoa powder. Refrigerate for at least 4 hours before serving.", 
+		"image/tiramisu.png");
+		recipes.add(recipe10);
+		pq.add(recipe10);
+		
+		Recipe recipe11 = new Recipe("Lemon Meringue Pie", "Dessert", i14, 
+		"Make lemon filling by combining lemon juice, sugar, cornstarch, and water, then cook until thickened. Whisk in egg yolks, pour into pie crust. Beat egg whites with cream of tartar and sugar to stiff peaks, spread over pie, and bake at 350°F (175°C) until meringue is golden.", 
+		"image/lemon_meringue_pie.png");
+		recipes.add(recipe11);
+		pq.add(recipe11);
+		
+		Recipe recipe12 = new Recipe("Cheesecake", "Dessert", i15, 
+		"Mix cream cheese, sugar, and vanilla until smooth. Add eggs and heavy cream, then pour into graham cracker crust. Bake at 325°F (160°C) for 45-50 minutes, then top with sour cream and bake for another 10 minutes. Chill before serving.", 
+		"image/cheesecake.png");
+		recipes.add(recipe12);
+		pq.add(recipe12);
+		
+		Recipe recipe13 = new Recipe("Apple Crumble", "Dessert", i16, 
+		"Toss sliced apples with sugar, cinnamon, and nutmeg, then place in a baking dish. Mix oats, flour, and butter until crumbly, then sprinkle over apples. Bake at 350°F (175°C) for 35-40 minutes until golden and bubbly.", 
+		"image/apple_crumble.png");
+		recipes.add(recipe13);
+		pq.add(recipe13);
+		
+		Recipe recipe14 = new Recipe("Panna Cotta", "Dessert", i17, 
+		"Heat cream, milk, and sugar until sugar dissolves, then add scraped vanilla bean. Dissolve gelatin in water and mix into the cream mixture. Pour into molds and refrigerate for 4 hours or overnight. Serve with fresh berries or fruit sauce.", 
+		"image/panna_cotta.png");
+		recipes.add(recipe14);
+		pq.add(recipe14);
+		
+		Recipe recipe15 = new Recipe("Strawberry Shortcake", "Dessert", i18, 
+		"Toss strawberries with sugar and let sit. Mix flour, baking powder, and butter to form a dough, then add milk. Bake biscuits at 400°F (200°C) for 12-15 minutes. Serve with whipped cream and macerated strawberries.", 
+		"image/strawberry_shortcake.png");
+		recipes.add(recipe15);
+		pq.add(recipe15);
+		
+		Recipe recipe16 = new Recipe("Baklava", "Dessert", i19, 
+		"Layer phyllo dough with chopped nuts and cinnamon, then brush with melted butter. Bake at 350°F (175°C) for 30-40 minutes until golden. Pour hot syrup made of honey, sugar, lemon juice over the baklava and let cool.", 
+		"image/baklava.png");
+		recipes.add(recipe16);
+		pq.add(recipe16);
+		
+		Recipe recipe17 = new Recipe("Creme Brûlée", "Dessert", i20, 
+		"Heat cream and vanilla to a simmer. Whisk together egg yolks and sugar, then temper with hot cream. Pour mixture into ramekins and bake at 325°F (160°C) for 45 minutes. Chill, then caramelize the top with brown sugar using a torch before serving.", 
+		"image/creme_brulee.png");
+		recipes.add(recipe17);
+		pq.add(recipe17);
+		
+		Recipe recipe18 = new Recipe("Churros", "Dessert", i21, 
+		"Boil water, butter, and sugar, then add flour and stir until dough forms. Let cool, then beat in eggs. Pipe dough into hot oil and fry until golden. Toss in cinnamon sugar and serve with chocolate dipping sauce.", 
+		"image/churros.png");
+		recipes.add(recipe18);
+		pq.add(recipe18);
+
+	    pq.displayQueue();
+	    pq.getTopThreeRecipes();
+        
+	    
         users.add(new User("Mark", "123"));
 
         admins.add(new Admin("Admin", "123"));
     }
-	
+
 	public ArrayList<Recipe> getRecipes() {
 		return recipes;
 	}
@@ -228,6 +329,7 @@ public class Configure {
 	public boolean isUser(String username, String password) {
         for (User user : users) {
             if (user.getName().equals(username) && user.getPassword().equals(password)) {
+            	setCurrentUser(username);
                 return true;
             }
         }
@@ -252,4 +354,25 @@ public class Configure {
         }
         return false;
     }
+	
+	
+	// 6205 added - Used by ChatBot	
+	public void setCurrentUser(String username) {
+        this.currentUser = username;
+    }
+	
+    public String getCurrentUser() {
+        return currentUser;
+    }
+	    
+    // Transfer the priorityQueue to other class
+    public ArrayQueue getPriorityQueue() {
+        return pq;
+    }
+    
+    public void updateRecipeFavorite(Recipe recipe) {
+    	  pq.updateFavorite(recipe); // update the priorityQueue
+
+    }
+	// 6205 added end
 }

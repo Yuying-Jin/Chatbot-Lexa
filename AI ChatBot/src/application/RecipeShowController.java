@@ -1,5 +1,6 @@
 package application;
 
+import Chatbot.CustomADT.ArrayQueue;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +29,21 @@ public class RecipeShowController {
     private ImageView recipeImageView;
 
     private Recipe recipe;
+    
+    //
+    private ArrayQueue pq;
+    
+    
+    public void initialize() {
+        // Retrieve the instance of Configure and the PriorityQueue
+        Configure configure = Configure.getInstance();
+        this.pq = configure.getPriorityQueue(); // Assuming you have a getter for PriorityQueue in Configure
+        // Now you can use the PriorityQueue for sorting or displaying recipes
+    }
+    
+    
+    //
+   
 
     // 用於顯示食譜的詳細資料
     public void showRecipeDetails(Recipe recipe) {
@@ -53,6 +69,14 @@ public class RecipeShowController {
     	recipe.incrementFavorite();
     	btnFavorite.setDisable(true);
     	btnFavorite.setStyle("-fx-background-color: grey; -fx-text-fill: white;");
+    	
+    	
+    	//
+    	Configure configure = Configure.getInstance();
+        configure.updateRecipeFavorite(recipe);
+//        System.out.println("Updated recipe: " + recipe.getName() + " - Favorites: " + recipe.getFavorite());
+    	pq.displayQueue();  	
+    	//
     }
     
     public void ShowrecipetoUser(ActionEvent event) {
