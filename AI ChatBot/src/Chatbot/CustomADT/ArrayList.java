@@ -1,6 +1,5 @@
 package Chatbot.CustomADT;
 import java.util.Arrays;
-import Chatbot.CustomADT.List;
 
 /**
  * A simple implementation of a dynamic array list.
@@ -18,6 +17,11 @@ public class ArrayList<T> implements List<T> {
         size = 0;
     }
 
+    /*
+     * adds an entry to the list
+     * @param entry the entry to add
+     * @throws IndexOutOfBoundsException if the index is out of range
+     */
     @Override
     public void add(T entry) {
         if (size == elements.length) {
@@ -26,22 +30,41 @@ public class ArrayList<T> implements List<T> {
         elements[size++] = entry;
     }
 
+    /**
+     * gets the element at the specified index
+     * @param index the index of the element to retrieve
+     * @return the element at the specified index
+     * @throws IndexOutOfBoundsException if the index is out of range
+     */
     @Override
     public T get(int index) {
         checkIndex(index);
         return elementAt(index);
     }
 
+    /**
+     * gets the number of elements in the list
+     * @return the number of elements in the list
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * checks if the list is empty
+     * @return true if the list is empty, false otherwise
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * removes the element at the specified index
+     * @param index the index of the element to remove
+     * @throws IndexOutOfBoundsException if the index is out of range
+     */
     @Override
     public void remove(int index) {
         checkIndex(index);
@@ -51,23 +74,58 @@ public class ArrayList<T> implements List<T> {
         elements[--size] = null;
     }
 
+    /*
+     * remove entry from the list
+     * @param entry the entry to remove
+     * @return true if the entry was removed, false otherwise
+     */
+    @Override
+    public boolean remove(T entry) {
+        int index = indexOf(entry);
+        if (index >= 0) {
+            remove(index);
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * clears the list
+     * @throws IndexOutOfBoundsException if the index is out of range
+     */ 
     @Override
     public void clear() {
         Arrays.fill(elements, 0, size, null);
         size = 0;
     }
 
+    /**
+     * checks if the list contains the specified entry
+     * @param entry the entry to check for
+     * @return true if the list contains the entry, false otherwise
+     */
     @Override
     public boolean contains(T entry) {
         return indexOf(entry) >= 0;
     }
 
+    /**
+     * converts the list to an array
+     * @return an array containing all elements in the list
+     * @throws IndexOutOfBoundsException if the index is out of range
+     */
     @SuppressWarnings("unchecked")
     @Override
     public T[] toArray() {
         return (T[]) Arrays.copyOf(elements, size, Object[].class);
     }
 
+    /**
+     * returns the index of the specified entry
+     * @param entry the entry to find
+     * @return the index of the entry, or -1 if not found
+     */
     @Override
     public int indexOf(T entry) {
         for (int i = 0; i < size; i++) {
@@ -78,6 +136,10 @@ public class ArrayList<T> implements List<T> {
         return -1;
     }
 
+    /*
+     * toString method
+     * @return a string representation of the list
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
@@ -93,6 +155,10 @@ public class ArrayList<T> implements List<T> {
 
     // ===== Utility Methods =====
 
+    /**
+     * Resizes the internal array to double its current size.
+     */
+
     private void resize() {
         elements = Arrays.copyOf(elements, elements.length * 2);
     }
@@ -102,6 +168,11 @@ public class ArrayList<T> implements List<T> {
         return (T) elements[index];
     }
 
+    /**
+     * Checks if the index is within bounds.
+     * @param index The index to check.
+     * @throws IndexOutOfBoundsException if the index is out of range.
+     */
     private void checkIndex(int index) {
         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException("Index " + index + " is out of bounds.");
