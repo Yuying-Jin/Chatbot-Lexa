@@ -18,6 +18,11 @@ public class Chatbot<T> implements ChatbotChatIF<T>, KnowledgeBaseManagementIF<T
 		this.llmApiClient = new LLMApiClient();
 	}
 	
+	/**
+	 * Singleton pattern to ensure only one instance of Chatbot exists.
+	 * 
+	 * @return The single instance of Chatbot.
+	 */
 	public static Chatbot getInstance() {
 		if (instance == null) {
 			instance = new Chatbot();
@@ -27,13 +32,20 @@ public class Chatbot<T> implements ChatbotChatIF<T>, KnowledgeBaseManagementIF<T
 
 
 	@Override
-	public T receiveMessage() {
+	public String generateResponse(String prompt) {
+		// TODO Auto-generated method stub
+		String context = "Based on the context {context with limited length}and "
+				+ "knowledge {knowledge}, answer the user’s question {question}. "
+				+ "Answer in English and be concise without mentioning the data source.";
+		
+		llmApiClient.callLLM(context);
+		
 		
 		return null;
 	}
 
 	@Override
-	public String generateResponse(String prompt) {
+	public ChatHistoryIF getChatHistory() {
 		// TODO Auto-generated method stub
 		return null;
 	}
