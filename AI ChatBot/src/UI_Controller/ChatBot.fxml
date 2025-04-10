@@ -11,9 +11,9 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="880.0" style="-fx-background-color: #FFF8DC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI_Controller.ChatBotController">
    <children>
       <!-- ScrollPane with VBox to hold messages -->
-      <ScrollPane fx:id="MessageContainer" layoutX="216.0" layoutY="138.0" prefHeight="344.0" prefWidth="650.0">
+      <ScrollPane fx:id="MessageContainer" layoutX="216.0" layoutY="138.0" prefHeight="344.0" prefWidth="660.0">
          <content>
-            <VBox fx:id="MessageVBox" spacing="10.0" />
+            <VBox fx:id="MessageVBox" spacing="10.0" prefWidth="660.0" />
          </content>
       </ScrollPane>
       

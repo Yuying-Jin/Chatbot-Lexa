@@ -16,8 +16,10 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class ChatBotController {
 
@@ -66,24 +68,27 @@ public class ChatBotController {
 
         if (userQuery != null && !userQuery.isEmpty()) {
             // show user's query to MessageVBox
-            Label userMessageLabel = new Label(config.getCurrentUser() + ": " + userQuery);
-            userMessageLabel.setFont(new Font("Arial", 16));
-            userMessageLabel.setStyle("-fx-background-color: #FFEBCD; -fx-padding: 3px;");
-            MessageVBox.getChildren().add(userMessageLabel);
+            Text userMessageText = new Text(config.getCurrentUser() + ": " + userQuery);
+            userMessageText.setWrappingWidth(MessageVBox.getWidth() - 10);
+            userMessageText.setFont(new Font("Arial", 16));
+            StackPane userMessageContainer = new StackPane(userMessageText);
+            userMessageContainer.setStyle("-fx-background-color: #FFEBCD; -fx-padding: 2px;");
+            MessageVBox.getChildren().add(userMessageContainer);
 
             // Robot's response
             String botResponse = "Bot: " + chatbot.generateResponse(userQuery);
-
-            // 將bot回應顯示在UI上
-            Label botMessageLabel = new Label(botResponse);
-            botMessageLabel.setFont(new Font("Arial", 16));
-            botMessageLabel.setStyle("-fx-background-color: #87CEFA; -fx-padding: 3px;");
-            MessageVBox.getChildren().add(botMessageLabel);
+            Text botMessageText = new Text(botResponse);
+            botMessageText.setWrappingWidth(MessageVBox.getWidth() - 10);
+            botMessageText.setFont(new Font("Arial", 16));
+            StackPane botMessageContainer = new StackPane(botMessageText);
+            botMessageContainer.setStyle("-fx-background-color: #87CEFA; -fx-padding: 2px;");
+            MessageVBox.getChildren().add(botMessageContainer);
 
             // clear TextArea
             txtQuery.clear();
         }
     }
+
 
     // Method to create a new session button when 'New' is clicked
     @FXML
@@ -104,7 +109,7 @@ public class ChatBotController {
 
         
         // Add the new session button to the SessionVBox
-        SessionVBox.getChildren().add(newSessionButton);
+        SessionVBox.getChildren().add(0, newSessionButton);
     }
     
     @FXML
