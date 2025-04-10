@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import Chatbot.Chatbot;
 import Chatbot.CustomADT.ArrayQueue;
+import Chatbot.KnowledgeBase.KnowledgeBaseIF;
 
 public class Configure {
 	
@@ -302,6 +304,15 @@ public class Configure {
         users.add(new User("Mark", "123"));
 
         admins.add(new Admin("Admin", "123"));
+        
+    	// 6205 added - Used by ChatBot	
+        // add entries to the knowledge base
+        Chatbot<Recipe> chatbot = Chatbot.getInstance();
+	    for (application.Recipe recipe : getRecipes()) {
+	        boolean added = chatbot.getKnowledgeBase().addEntry(recipe);
+	        System.out.println((added ? "Added" : "Failed to add") + " entry: " + recipe.getName());
+	    }
+		// 6205 added - Used by ChatBot	
     }
 
 	public ArrayList<Recipe> getRecipes() {
@@ -374,5 +385,12 @@ public class Configure {
     	  pq.updateFavorite(recipe); // update the priorityQueue
 
     }
+    
+	public void addKnowledgeToKnowledgeBase(Recipe recipe) {
+		// Add the recipe to the knowledge base
+		Chatbot<Recipe> chatbot = Chatbot.getInstance();
+		KnowledgeBaseIF<Recipe> knowledgeBase = chatbot.getKnowledgeBase();
+		knowledgeBase.addEntry(recipe);
+	}
 	// 6205 added end
 }

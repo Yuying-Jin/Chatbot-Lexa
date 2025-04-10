@@ -1,6 +1,8 @@
 package UI_Controller;
 
 
+import Chatbot.Chatbot;
+import Chatbot.ChatbotChatIF;
 import Chatbot.CustomADT.ArrayQueue;
 import application.Configure;
 import application.MainController;
@@ -35,12 +37,14 @@ public class ChatBotController {
     private Button btnGo;
 
     private ArrayQueue pq;
+    
+    private ChatbotChatIF chatbot;
 
     
     @FXML
     public void initialize() {
     	
-    	
+    	chatbot = Chatbot.getInstance();
     	Configure configure = Configure.getInstance();
         this.pq = configure.getPriorityQueue();
     	
@@ -68,9 +72,7 @@ public class ChatBotController {
             MessageVBox.getChildren().add(userMessageLabel);
 
             // Robot's response
-
-            String botResponse = "Bot: xxxxx";
-            
+            String botResponse = "Bot: " + chatbot.generateResponse(userQuery);
 
             // 將bot回應顯示在UI上
             Label botMessageLabel = new Label(botResponse);

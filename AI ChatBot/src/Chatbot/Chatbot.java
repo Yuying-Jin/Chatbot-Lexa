@@ -9,7 +9,7 @@ public class Chatbot<T> implements ChatbotChatIF<T>, KnowledgeBaseManagementIF<T
 	private KnowledgeBaseIF<T> knowledgeBase;
 	private LLMApiClientIF llmApiClient;
 	
-	private static Chatbot instance = null;
+	private static Chatbot<?> instance = null;
 	
 	private Chatbot() {
 		this.chatHistory = new ChatHistory();
@@ -30,6 +30,14 @@ public class Chatbot<T> implements ChatbotChatIF<T>, KnowledgeBaseManagementIF<T
     }
 
 
+	/*
+	 * * Generates a response to the user's question based on the knowledge base and
+	 * context.
+	 * 
+	 * @param prompt The user's question.
+	 * 
+	 * @return The generated response.
+	 */
 	@Override
 	public String generateResponse(String prompt) {
 		String context = """
@@ -71,37 +79,37 @@ public class Chatbot<T> implements ChatbotChatIF<T>, KnowledgeBaseManagementIF<T
 		return knowledgeBase;
 	}
 	
-	public static void main(String[] args) {
-		Chatbot<Recipe> chatbot = Chatbot.getInstance();
-	    // initialize the recipes
-	    Configure config = Configure.getInstance();
-
-	    // add entries to the knowledge base
-	    for (Recipe recipe : config.getRecipes()) {
-	        boolean added = chatbot.getKnowledgeBase().addEntry(recipe);
-	        System.out.println((added ? "Added" : "Failed to add") + " entry: " + recipe.getName());
-	    }
-
-	    
-	    // test questions
-	    String[] testQuestions = {
-	            "I want some chocolate desserts, what do you recommend?",
-	            "What is a popular Italian dessert?",
-	            "Can you suggest a fruit-based dessert?",
-	            "What is the favorite dish in the system?",
-	            "How do I make a traditional pasta dish?"
-	        };
-	    
-	    // add some entries to the knowledge base
-	    for (String question : testQuestions) {
-	        String response = chatbot.generateResponse(question);
-	        
-	        try {
-	            Thread.sleep(100);  // Sleep for 100 milliseconds
-	        } catch (InterruptedException e) {
-	            e.printStackTrace();
-	        }
-	    }
-	}
+//	public static void main(String[] args) {
+//		Chatbot<application.Recipe> chatbot = Chatbot.getInstance();
+//	    // initialize the recipes
+//	    application.Configure config = application.Configure.getInstance();
+//
+//	    // add entries to the knowledge base
+//	    for (application.Recipe recipe : config.getRecipes()) {
+//	        boolean added = chatbot.getKnowledgeBase().addEntry(recipe);
+//	        System.out.println((added ? "Added" : "Failed to add") + " entry: " + recipe.getName());
+//	    }
+//
+//	    
+//	    // test questions
+//	    String[] testQuestions = {
+//	            "I want some chocolate desserts, what do you recommend?",
+//	            "What is a popular Italian dessert?",
+//	            "Can you suggest a fruit-based dessert?",
+//	            "What is the favorite dish in the system?",
+//	            "How do I make a traditional pasta dish?"
+//	        };
+//	    
+//	    // ask questions
+//	    for (String question : testQuestions) {
+//	        String response = chatbot.generateResponse(question);
+//	        
+//	        try {
+//	            Thread.sleep(100);  // Sleep for 100 milliseconds
+//	        } catch (InterruptedException e) {
+//	            e.printStackTrace();
+//	        }
+//	    }
+//	}
 	
 }

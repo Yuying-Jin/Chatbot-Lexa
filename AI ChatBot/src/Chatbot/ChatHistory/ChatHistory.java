@@ -53,42 +53,41 @@ public class ChatHistory extends ArrayList<ChatSession> implements ChatHistoryIF
     }
 
 
-
-    /**
-     * Main method for quick testing.
-     */
-    public static void main(String[] args) {
-        ChatHistory history = new ChatHistory();
-
-        ChatSession session1 = new ChatSession("Session A");
-        ChatSession session2 = new ChatSession("Session B");
-        ChatSession session3 = new ChatSession("Session C");
-
-        history.addChatSession(session1);
-        history.addChatSession(session2);
-        history.addChatSession(session3);
-
-        System.out.println("== All Sessions ==");
-        System.out.println(history);
-
-        ChatSession updated = new ChatSession("Updated Session B");
-        history.updateChatSession(1, updated);
-
-        System.out.println("== After Update ==");
-        System.out.println(history);
-
-        history.removeChatSession(0);
-        System.out.println("== After Removal ==");
-        System.out.println(history);
-
-        try {
-            history.saveToDatabase();
-        } catch (Exception e) {
-            System.out.println("DB error: " + e.getMessage());
-        }
-
-        history.clearHistory();
-        System.out.println("== After Clear ==");
-        System.out.println(history);
-    }
+//    /**
+//     * Main method for quick testing.
+//     */
+//    public static void main(String[] args) {
+//        ChatHistory history = new ChatHistory();
+//
+//        ChatSession session1 = new ChatSession("Session A");
+//        ChatSession session2 = new ChatSession("Session B");
+//        ChatSession session3 = new ChatSession("Session C");
+//
+//        history.addChatSession(session1);
+//        history.addChatSession(session2);
+//        history.addChatSession(session3);
+//
+//        System.out.println("== All Sessions ==");
+//        System.out.println(history);
+//
+//        ChatSession updated = new ChatSession("Updated Session B");
+//        history.updateChatSession(1, updated);
+//
+//        System.out.println("== After Update ==");
+//        System.out.println(history);
+//
+//        history.removeChatSession(0);
+//        System.out.println("== After Removal ==");
+//        System.out.println(history);
+//
+//        try {
+//            history.saveToDatabase();
+//        } catch (Exception e) {
+//            System.out.println("DB error: " + e.getMessage());
+//        }
+//
+//        history.clearHistory();
+//        System.out.println("== After Clear ==");
+//        System.out.println(history);
+//    }
 }
