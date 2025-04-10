@@ -6,10 +6,14 @@ import java.time.LocalDateTime;
  * Represents a chat message with sender, content, and timestamp.
  */
 public class Message {
-    private String sender;
+    private SenderType sender;
     private String content;
     private LocalDateTime timestamp;
-
+    
+    public enum SenderType {
+        USER, BOT;
+    }
+    
     /**
      * Constructs a Message object.
      * @param sender The sender of the message.
@@ -17,7 +21,7 @@ public class Message {
      * @param timestamp The time the message was sent.
      */
 
-    public Message(String sender, String content, LocalDateTime timestamp) {
+    public Message(SenderType sender, String content, LocalDateTime timestamp) {
         this.sender = sender;
         this.content = content;
         this.timestamp = timestamp; 
@@ -27,7 +31,7 @@ public class Message {
      * Gets the sender of the message.
      * @return The sender of the message.
      */
-    public String getSender() {
+    public SenderType  getSender() {
         return sender;
     }
 
@@ -45,6 +49,15 @@ public class Message {
      */
     public LocalDateTime getTimestamp() {
         return timestamp;
+    }
+    
+    @Override
+    public String toString() {
+        return "Message{" +
+                "content='" + content + '\'' +
+                ", sender=" + sender +
+                ", timestamp=" + timestamp +
+                '}';
     }
 
 }

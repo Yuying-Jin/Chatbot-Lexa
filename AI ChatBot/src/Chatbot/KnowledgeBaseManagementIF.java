@@ -1,5 +1,9 @@
 package Chatbot;
 
-public interface KnowledgeBaseManagementIF<T> {
+import Chatbot.KnowledgeBase.KnowledgeBaseIF;
 
+public interface KnowledgeBaseManagementIF<T> {
+	KnowledgeBaseIF<T> getKnowledgeBase(); // Returns the knowledge base
+	
+	
 }

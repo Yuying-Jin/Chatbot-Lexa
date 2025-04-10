@@ -1,4 +1,4 @@
-package Chatbot.KnowledgeBase;
+package Chatbot;
 
 import java.util.ArrayList;
 import java.util.HashSet;
