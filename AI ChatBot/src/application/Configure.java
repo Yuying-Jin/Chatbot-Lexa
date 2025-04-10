@@ -282,6 +282,7 @@ public class Configure {
 		Recipe recipe16 = new Recipe("Baklava", "Dessert", i19, 
 		"Layer phyllo dough with chopped nuts and cinnamon, then brush with melted butter. Bake at 350°F (175°C) for 30-40 minutes until golden. Pour hot syrup made of honey, sugar, lemon juice over the baklava and let cool.", 
 		"image/baklava.png");
+		recipe16.setFavorite(3);
 		recipes.add(recipe16);
 		pq.add(recipe16);
 		
