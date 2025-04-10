@@ -90,7 +90,7 @@ public class HashMap<K, V> implements Map<K, V> {
 		}
 
 		// Traverse the linked list at this index
-		for (Entry entry : table[index].toArray()) {
+		for (Entry entry : table[index]) {
 			if (entry.key.equals(key)) {
 				return true; // Key found
 			}
@@ -113,7 +113,7 @@ public class HashMap<K, V> implements Map<K, V> {
 		for (int i = 0; i < table.length; i++) {
 			if (table[i] != null) {
 				// Traverse the linked list at this index
-				for (Entry entry : table[i].toArray()) {
+				for (Entry entry : table[i]) {
 					if (entry.value.equals(value)) {
 						return true; // Value found
 					}
@@ -140,7 +140,7 @@ public class HashMap<K, V> implements Map<K, V> {
 			return null; // No entries at this index
 		}
 		// Traverse the linked list at this index
-		for (Entry entry : table[index].toArray()) {
+		for (Entry entry : table[index]) {
 			if (entry.key.equals(key)) {
 				return (V) entry.value; // Key found, return value
 			}
@@ -162,7 +162,7 @@ public class HashMap<K, V> implements Map<K, V> {
         ArrayList<Entry> bucket = table[index];
         
         // Check if the key already exists
-		for (Entry entry : bucket.toArray()) {
+		for (Entry entry : bucket) {
 			if (entry.key.equals(key)) {
 				entry.value = value; // Update existing value
 				return;
@@ -193,7 +193,7 @@ public class HashMap<K, V> implements Map<K, V> {
 			return false; // No entries at this index
 		}
 		// Traverse the linked list at this index
-		for (Entry entry : table[index].toArray()) {
+		for (Entry entry : table[index]) {
 			if (entry.key.equals(key)) {
 				V value = (V) entry.value; // Key found, get value
 				table[index].remove(entry); // Remove entry from list
@@ -229,7 +229,7 @@ public class HashMap<K, V> implements Map<K, V> {
 		int index = 0;
 		for (int i = 0; i < table.length; i++) {
 			if (table[i] != null) {
-				for (Entry entry : table[i].toArray()) {
+				for (Entry entry : table[i]) {
 					keys[index++] = (K) entry.key;
 				}
 			}
@@ -249,7 +249,7 @@ public class HashMap<K, V> implements Map<K, V> {
 		int index = 0;
 		for (int i = 0; i < table.length; i++) {
 			if (table[i] != null) {
-				for (Entry entry : table[i].toArray()) {
+				for (Entry entry : table[i]) {
 					values[index++] = (V) entry.value;
 				}
 			}
@@ -270,7 +270,7 @@ public class HashMap<K, V> implements Map<K, V> {
 
 	    for (int i = 0; i < table.length; i++) {
 	        if (table[i] != null) {
-	            for (Entry entry : table[i].toArray()) {
+	            for (Entry entry : table[i]) {
 	                int newIndex = Math.abs(entry.key.hashCode()) % newCapacity;
 	                newTable[newIndex].add(entry);
 	            }

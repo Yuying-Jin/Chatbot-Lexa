@@ -1,11 +1,12 @@
 package Chatbot.CustomADT;
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * A simple implementation of a dynamic array list.
  * @param <T> The type of elements stored in the list.
  */
-public class ArrayList<T> implements List<T> {
+public class ArrayList<T> implements List<T>, Iterable<T> {
     private Object[] elements;
     private int size;
 
@@ -176,5 +177,33 @@ public class ArrayList<T> implements List<T> {
     private void checkIndex(int index) {
         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException("Index " + index + " is out of bounds.");
+    }
+
+    
+	/**
+	 * Returns an iterator over the elements in this list.
+	 * 
+	 * @return an iterator over the elements in this list
+	 */
+	@Override
+	public Iterator<T> iterator() {
+		return new ArrayListIterator();
+	}
+	
+	/*
+	 * * An iterator for the ArrayList.
+	 */
+	private class ArrayListIterator implements Iterator<T> {
+        private int cursor = 0;
+
+        @Override
+        public boolean hasNext() {
+            return cursor < size;
+        }
+
+        @Override
+        public T next() {
+            return elementAt(cursor++);
+        }
     }
 }

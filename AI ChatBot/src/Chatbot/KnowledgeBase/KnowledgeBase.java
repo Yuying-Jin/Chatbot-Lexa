@@ -43,13 +43,13 @@ public class KnowledgeBase<T> implements KnowledgeBaseIF<T> {
 					continue; // Skip null values
 				}
                 
-                if (value instanceof SimpleStringProperty) {
-                    sb.append(fields[i].getName()).append(":").append(((SimpleStringProperty) value).get());
-                }
-                // Handle SimpleIntegerProperty
-                else if (value instanceof SimpleIntegerProperty) {
-                    sb.append(fields[i].getName()).append(":").append(((SimpleIntegerProperty) value).get());
-                }
+//                if (value instanceof SimpleStringProperty) {
+//                    sb.append(fields[i].getName()).append(":").append(((SimpleStringProperty) value).get());
+//                }
+//                // Handle SimpleIntegerProperty
+//                else if (value instanceof SimpleIntegerProperty) {
+//                    sb.append(fields[i].getName()).append(":").append(((SimpleIntegerProperty) value).get());
+//                }
 				
                 sb.append(field.getName()).append(":").append(value); // Append field name and value
                 
@@ -165,49 +165,49 @@ public class KnowledgeBase<T> implements KnowledgeBaseIF<T> {
 	    return sb.toString(); 
 	}
 
-//	// Test the KnowledgeBase class
-//	public static void main(String[] args) {
-//		
-//		// |---------------- Insert entries into the knowledge base ---------------------------|
-//	    // initialize the knowledge base
-//	    KnowledgeBase<Recipe> kb = new KnowledgeBase<>();
-//
-//	    // initialize the recipes
-//	    Configure config = Configure.getInstance();
-//
-//	    // add entries to the knowledge base
-//	    for (Recipe recipe : config.getRecipes()) {
-//	        boolean added = kb.addEntry(recipe);
-//	        System.out.println((added ? "Added" : "Failed to add") + " entry: " + recipe.getName());
-//	    }
-//	    
-//	    // |-----------------update an entry in the knowledge base---------------|
-//	    Recipe updated = config.getRecipes().get(0); // Get the first recipe; 
-//	    updated.setFavorite(1); 
-//	    boolean updatedResult = kb.updateEntry(updated);
-//	    System.out.println("Update entry '" + updated.getName() + "': " + updatedResult);
-//	    
-//	    // |----------------------Retrieve all entries-------------------------|
-//	    // print all entries in the knowledge base
-//	    System.out.println("\n--- All knowledge entries in KnowledgeBase ---");
-//	    String allKnowledge = kb.retrieveAll();
-//	    // print all entries
-//	    System.out.println(allKnowledge);
-//	    
-//	    // |------------------Find entries by value-----------------|
-//	    System.out.println("\n--- Find Entries by Value ---");
-//	    String result = kb.findEntriesByValue("bacon");
-//	    System.out.println("Search results for 'bacon':\n" + result);
-//	    
-//	    String result2 = kb.findEntriesByValue("chocolate");
-//	    System.out.println("Search results for 'chocolate':\n" + result2);
-//	    
-//	    // |------------------remove an entry from the knowledge base-----------------|
-//	    System.out.println("\n--- Remove an entry ---");
-//	    boolean removedExistent = kb.removeEntry(config.getRecipes().get(0)); 
-//	    System.out.println("Removed non-existent recipe: " + removedExistent); // Should print true
-//	    boolean removedNonExistent = kb.removeEntry(config.getRecipes().get(0)); // Try removing the same recipe again
-//	    System.out.println("Removed non-existent recipe: " + removedNonExistent); // Should print false
-//	}
+	// Test the KnowledgeBase class
+	public static void main(String[] args) {
+		
+		// |---------------- Insert entries into the knowledge base ---------------------------|
+	    // initialize the knowledge base
+	    KnowledgeBase<Recipe> kb = new KnowledgeBase<>();
+
+	    // initialize the recipes
+	    Configure config = Configure.getInstance();
+
+	    // add entries to the knowledge base
+	    for (Recipe recipe : config.getRecipes()) {
+	        boolean added = kb.addEntry(recipe);
+	        System.out.println((added ? "Added" : "Failed to add") + " entry: " + recipe.getName());
+	    }
+	    
+	    // |-----------------update an entry in the knowledge base---------------|
+	    Recipe updated = config.getRecipes().get(0); // Get the first recipe; 
+	    updated.setFavorite(1); 
+	    boolean updatedResult = kb.updateEntry(updated);
+	    System.out.println("Update entry '" + updated.getName() + "': " + updatedResult);
+	    
+	    // |----------------------Retrieve all entries-------------------------|
+	    // print all entries in the knowledge base
+	    System.out.println("\n--- All knowledge entries in KnowledgeBase ---");
+	    String allKnowledge = kb.retrieveAll();
+	    // print all entries
+	    System.out.println(allKnowledge);
+	    
+	    // |------------------Find entries by value-----------------|
+	    System.out.println("\n--- Find Entries by Value ---");
+	    String result = kb.findEntriesByValue("bacon");
+	    System.out.println("Search results for 'bacon':\n" + result);
+	    
+	    String result2 = kb.findEntriesByValue("chocolate");
+	    System.out.println("Search results for 'chocolate':\n" + result2);
+	    
+	    // |------------------remove an entry from the knowledge base-----------------|
+	    System.out.println("\n--- Remove an entry ---");
+	    boolean removedExistent = kb.removeEntry(config.getRecipes().get(0)); 
+	    System.out.println("Removed non-existent recipe: " + removedExistent); // Should print true
+	    boolean removedNonExistent = kb.removeEntry(config.getRecipes().get(0)); // Try removing the same recipe again
+	    System.out.println("Removed non-existent recipe: " + removedNonExistent); // Should print false
+	}
 	
 }
