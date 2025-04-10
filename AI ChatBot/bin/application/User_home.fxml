@@ -40,5 +40,10 @@
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Button>
+      <Button fx:id="btnQuery" layoutX="275.0" layoutY="166.0" mnemonicParsing="false" onAction="#UsertoQuery" prefHeight="27.0" prefWidth="178.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: #CECEFF;" text="ChatBot Query">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
