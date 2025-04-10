@@ -40,6 +40,13 @@ public interface List<T> {
     void remove(int index);
 
     /**
+     * removes the specified element from the list.
+     * @param entry The element to remove.
+     * @return true if the element was removed, false otherwise.
+     */
+    boolean remove(T entry);
+
+    /**
      * clears the list.
      * @throws IndexOutOfBoundsException if the index is out of range.
      */
