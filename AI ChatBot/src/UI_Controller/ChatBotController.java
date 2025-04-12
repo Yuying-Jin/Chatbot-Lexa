@@ -1,6 +1,8 @@
 package UI_Controller;
 
 
+import java.util.Optional;
+
 import Chatbot.Chatbot;
 import Chatbot.ChatbotChatIF;
 import Chatbot.CustomADT.ArrayQueue;
@@ -16,6 +18,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -96,33 +99,42 @@ public class ChatBotController {
         Button newSessionButton = new Button("Session " + (SessionVBox.getChildren().size() + 1));
         newSessionButton.setFont(new Font("Arial", 14));
         newSessionButton.setStyle(
-                "-fx-background-color: #6495ED; " + // background color
-                "-fx-border-color: #4169E1; " +    // border color (black)
-                "-fx-border-width: 2px; " +        // border width
-                "-fx-padding: 10px; " +             // padding inside the button
-                "-fx-border-radius: 5px; " +       // rounded corners for the border
-                "-fx-background-radius: 5px;"      // rounded corners for the background
-            );
+            "-fx-background-color: #6495ED; " +
+            "-fx-border-color: #4169E1; " +
+            "-fx-border-width: 2px; " +
+            "-fx-padding: 10px; " +
+            "-fx-border-radius: 5px; " +
+            "-fx-background-radius: 5px;"
+        );
 
-		// Set the width of the button to match the SessionVBox width
-		newSessionButton.setPrefWidth(SessionVBox.getWidth());
-		
-		newSessionButton.setOnAction(e -> {
-			// Change background color of clicked button to white
-			newSessionButton.setStyle("-fx-background-color: white; -fx-border-color: #4169E1; -fx-border-width: 2px; -fx-padding: 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
-    
-			// Change the background color of all other buttons back to the default color
-			for (javafx.scene.Node node : SessionVBox.getChildren()) {
-				if (node instanceof Button && node != newSessionButton) {
-					node.setStyle("-fx-background-color: #6495ED; -fx-border-color: #4169E1; -fx-border-width: 2px; -fx-padding: 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
-				}
-			}
-		});
+        newSessionButton.setPrefWidth(SessionVBox.getWidth());
 
-        
-        // Add the new session button to the SessionVBox
+        // 點擊時切換背景色
+        newSessionButton.setOnAction(e -> {
+            newSessionButton.setStyle("-fx-background-color: white; -fx-border-color: #4169E1; -fx-border-width: 2px; -fx-padding: 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+            for (javafx.scene.Node node : SessionVBox.getChildren()) {
+                if (node instanceof Button && node != newSessionButton) {
+                    node.setStyle("-fx-background-color: #6495ED; -fx-border-color: #4169E1; -fx-border-width: 2px; -fx-padding: 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+                }
+            }
+        });
+
+        // 加入「雙擊按鈕名稱來修改」的功能
+        newSessionButton.setOnMouseClicked(mouseEvent -> {
+            if (mouseEvent.getClickCount() == 2) {
+                TextInputDialog renameDialog = new TextInputDialog(newSessionButton.getText());
+                renameDialog.setTitle("Rename Session");
+                renameDialog.setHeaderText("Change the session name:");
+                renameDialog.setContentText("New name:");
+
+                Optional<String> newName = renameDialog.showAndWait();
+                newName.ifPresent(name -> newSessionButton.setText(name));
+            }
+        });
+
         SessionVBox.getChildren().add(0, newSessionButton);
     }
+
     
     @FXML
     public void getTop3() {
