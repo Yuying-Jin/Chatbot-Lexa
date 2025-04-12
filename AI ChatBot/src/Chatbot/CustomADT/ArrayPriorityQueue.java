@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 import application.Recipe;
 
-public class ArrayQueue implements QueueInterface<Recipe>{
+public class ArrayPriorityQueue implements QueueInterface<Recipe>{
     private Recipe[] queue;
     private int size;
 
-    public ArrayQueue(int capacity) {
+    public ArrayPriorityQueue(int capacity) {
         queue = new Recipe[capacity];
         size = 0;
     }

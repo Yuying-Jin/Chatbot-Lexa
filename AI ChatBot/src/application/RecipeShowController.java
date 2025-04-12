@@ -1,6 +1,6 @@
 package application;
 
-import Chatbot.CustomADT.ArrayQueue;
+import Chatbot.CustomADT.ArrayPriorityQueue;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +31,7 @@ public class RecipeShowController {
     private Recipe recipe;
     
     //
-    private ArrayQueue pq;
+    private ArrayPriorityQueue pq;
     
     
     public void initialize() {

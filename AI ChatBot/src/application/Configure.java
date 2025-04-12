@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import Chatbot.Chatbot;
-import Chatbot.CustomADT.ArrayQueue;
+import Chatbot.CustomADT.ArrayPriorityQueue;
 import Chatbot.KnowledgeBase.KnowledgeBaseIF;
 
 public class Configure {
@@ -40,12 +40,12 @@ public class Configure {
     private Set<Admin> admins = new HashSet<>();
 
     // 6205
-    private ArrayQueue pq;
+    private ArrayPriorityQueue pq;
     private String currentUser;
     //
     
 	public Configure() {
-		pq = new ArrayQueue(10);
+		pq = new ArrayPriorityQueue(10);
 		initializeData();
 
 	}
@@ -302,7 +302,9 @@ public class Configure {
 	    pq.getTopThreeRecipes();
         
 	    
-        users.add(new User("Mark", "123"));
+        users.add(new User("Charlotte", "123"));
+        users.add(new User("Joy", "123"));
+        users.add(new User("Yuying", "123"));
 
         admins.add(new Admin("Admin", "123"));
         
@@ -378,7 +380,7 @@ public class Configure {
     }
 	    
     // Transfer the priorityQueue to other class
-    public ArrayQueue getPriorityQueue() {
+    public ArrayPriorityQueue getPriorityQueue() {
         return pq;
     }
     

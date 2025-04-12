@@ -3,7 +3,7 @@ package application;
 import java.io.File;
 import java.util.ArrayList;
 
-import Chatbot.CustomADT.ArrayQueue;
+import Chatbot.CustomADT.ArrayPriorityQueue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -34,7 +34,7 @@ public class CreateRecipeController {
     
     
     //6205
-    private ArrayQueue pq;
+    private ArrayPriorityQueue pq;
     
     public void initialize() {
         // Retrieve the instance of Configure and the PriorityQueue
