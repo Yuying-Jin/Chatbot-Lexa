@@ -1,11 +1,15 @@
 package Chatbot.ChatHistory;
+import java.util.Iterator;
+
 import Chatbot.CustomADT.ArrayList;
 /**
  * ChatHistory class that stores multiple ChatSessions.
  * Inherits from ArrayList<ChatSession> and implements ChatHistoryIF.
  */
 public class ChatHistory extends ArrayList<ChatSession> implements ChatHistoryIF {
-
+	
+	private ChatSession currentSession;
+	
     @Override
     public void addChatSession(ChatSession session) {
         this.add(session);
@@ -40,6 +44,14 @@ public class ChatHistory extends ArrayList<ChatSession> implements ChatHistoryIF
         System.out.println("Saving " + this.size() + " chat sessions to the database...");
         // Simulate saving
     }
+    
+    public void setCurrentSession(ChatSession session) {
+        this.currentSession = session;
+    }
+
+    public ChatSession getCurrentSession() {
+        return currentSession;
+    }
 
     @Override
     public String toString() {
@@ -52,7 +64,13 @@ public class ChatHistory extends ArrayList<ChatSession> implements ChatHistoryIF
         return sb.toString();
     }
 
+    @Override
+    public Iterable<ChatSession> getAllChatSessions() {
+        return this;
+    }
 
+
+    
 //    /**
 //     * Main method for quick testing.
 //     */

@@ -86,7 +86,7 @@ public class LLMApiClient implements LLMApiClientIF {
         // print the bot response
 //        System.out.println(botResponse);
         // return the bot response
-        return botResponse;
+        return botResponse.trim();
     }
     
 //    // Main method for testing

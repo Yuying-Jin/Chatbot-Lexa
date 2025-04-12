@@ -19,7 +19,7 @@ public class ChatSession extends ArrayList<Message> {
      * Default constructor with auto-generated name.
      */
     public ChatSession() {
-        this("Unnamed Session");
+        this("Session " + idCounter);
     }
 
     /**
@@ -52,6 +52,15 @@ public class ChatSession extends ArrayList<Message> {
     public String getName() {
         return name;
     }
+    
+	/**
+	 * Sets the name of the session.
+	 * 
+	 * @param name The new name for the session.
+	 */
+    public void setName(String name) {
+    	this.name = name;
+    }
 
     /**
      * Returns the session creation timestamp.
@@ -73,7 +82,7 @@ public class ChatSession extends ArrayList<Message> {
      * Returns the number of messages in the session.
      * @return Message count.
      */
-    public int getCount() {
+    public int getSize() {
         return size;
     }
 
@@ -85,13 +94,18 @@ public class ChatSession extends ArrayList<Message> {
         return this; // Since this extends ArrayList<Message>
     }
 
+//    @Override
+//    public String toString() {
+//        return "ChatSession{" +
+//                "name='" + name + '\'' +
+//                ", timestamp=" + timestamp +
+//                ", id=" + id +
+//                ", count=" + size +
+//                '}';
+//    }
+    
     @Override
     public String toString() {
-        return "ChatSession{" +
-                "name='" + name + '\'' +
-                ", timestamp=" + timestamp +
-                ", id=" + id +
-                ", count=" + size +
-                '}';
+    	return getName();
     }
 }
