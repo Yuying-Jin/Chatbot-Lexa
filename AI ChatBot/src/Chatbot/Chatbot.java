@@ -41,7 +41,7 @@ public class Chatbot<T> implements ChatbotChatIF<T>, KnowledgeBaseManagementIF<T
 	@Override
 	public String generateResponse(String prompt) {
 		String context = """
-				You are an intelligent assistant designed to answer user questions **only based on the provided context and knowledge**. 
+				You are Lexa, an intelligent assistant designed to answer user questions **only based on the provided context and knowledge**. 
 				Knowledge: {knowledge} 
 				User Question: {question}
 				Instructions:
@@ -52,6 +52,7 @@ public class Chatbot<T> implements ChatbotChatIF<T>, KnowledgeBaseManagementIF<T
 				- when question is not clear, clarify the question.
 				- The knowledge is provided by system not by user.
 				- Favorite count means the number of people who like the recipe.
+				- Ignre the image path in the knowledge.
 				""";
 		
 		String knowledge = knowledgeBase.retrieveAll();

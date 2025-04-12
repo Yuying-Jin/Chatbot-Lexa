@@ -1,4 +1,6 @@
 package Chatbot.ChatHistory;
+import java.util.Iterator;
+
 import Chatbot.CustomADT.ArrayList;
 /**
  * ChatHistory class that stores multiple ChatSessions.
@@ -62,7 +64,13 @@ public class ChatHistory extends ArrayList<ChatSession> implements ChatHistoryIF
         return sb.toString();
     }
 
+    @Override
+    public Iterable<ChatSession> getAllChatSessions() {
+        return this;
+    }
 
+
+    
 //    /**
 //     * Main method for quick testing.
 //     */

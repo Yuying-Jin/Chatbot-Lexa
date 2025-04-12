@@ -37,15 +37,6 @@ public class ArrayQueue implements QueueInterface<Recipe>{
     	queue = Arrays.copyOf(queue, queue.length*2);
 	}
 
-	// Get the most favorite recipe
-    public Recipe removeMax() {
-        if (isEmpty()) return null;
-        Recipe max = queue[0];
-        System.arraycopy(queue, 1, queue, 0, size - 1);
-        size--;
-        return max;
-        
-    }
 
     // Update recipe's favorite and re-sort
     public void updateFavorite(Recipe recipe) {

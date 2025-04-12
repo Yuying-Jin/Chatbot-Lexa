@@ -1,6 +1,7 @@
 package Chatbot.CustomADT;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.lang.reflect.Array;
 
 /**
  * A simple implementation of a dynamic array list.
@@ -13,7 +14,8 @@ public class ArrayList<T> implements List<T>, Iterable<T> {
     /**
      * Default constructor with initial capacity.
      */
-    public ArrayList() {
+    @SuppressWarnings("unchecked")
+	public ArrayList() {
         elements = new Object[10];
         size = 0;
     }
@@ -119,7 +121,9 @@ public class ArrayList<T> implements List<T>, Iterable<T> {
     @SuppressWarnings("unchecked")
     @Override
     public T[] toArray() {
-        return (T[]) Arrays.copyOf(elements, size, Object[].class);
+    	 T[] array = (T[]) Array.newInstance((Class<T>) Object.class, size);
+         System.arraycopy(elements, 0, array, 0, size);
+         return array;
     }
 
     /**

@@ -19,7 +19,7 @@ public class ChatSession extends ArrayList<Message> {
      * Default constructor with auto-generated name.
      */
     public ChatSession() {
-        this("Unnamed Session");
+        this("Session " + idCounter);
     }
 
     /**

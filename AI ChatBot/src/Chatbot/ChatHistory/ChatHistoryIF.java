@@ -1,5 +1,7 @@
 package Chatbot.ChatHistory;
 
+import java.util.Iterator;
+
 public interface ChatHistoryIF {
     /**
      * Adds a chat session to the history.
@@ -57,6 +59,20 @@ public interface ChatHistoryIF {
 	 * @param session The chat session to set as current.
 	 */
     void setCurrentSession(ChatSession session);
+    
+    /**
+     * Get all chat sessions in the history.
+     * 
+     * @return An array of all chat sessions.
+     */
+    Iterable<ChatSession> getAllChatSessions();
+    
+    /**
+     * If the chat history is empty.
+     * 
+     * @return true if the chat history is empty, false otherwise.
+     */
+    boolean isEmpty();
     
     /**
      * Returns a string representation of the chat history.
