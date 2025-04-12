@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="880.0" style="-fx-background-color: #FFF8DC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ManageRecipeController">
+   <children>
+      <Button fx:id="btnBack" layoutX="25.0" layoutY="26.0" mnemonicParsing="false" onAction="#MngRecipetoAdmin" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 50; -fx-border-radius: 50;" text="Back">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Button>
+      <TableView fx:id="recipeTableView" layoutX="136.0" layoutY="119.0" prefHeight="369.0" prefWidth="663.0">
+        <columns>
+          <TableColumn fx:id="columnDishName" prefWidth="175.5" text="Dish Name" />
+          <TableColumn fx:id="columnType" prefWidth="92.5" text="Type" />
+            <TableColumn fx:id="columnIngredients" prefWidth="277.5" text="Ingredient" />
+            <TableColumn fx:id="columnFavorite" prefWidth="116.5" text="Favorite" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnDeleteRecipe" layoutX="350.0" layoutY="551.0" onAction="#handleDeleteRecipe" prefHeight="33.0" prefWidth="165.0" style="-fx-background-color: #ADD8E6; -fx-background-radius: 50; -fx-border-radius: 50;" text="Delete Selected Recipe">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

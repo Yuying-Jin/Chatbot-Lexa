@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="880.0" style="-fx-background-color: #FFF8DC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+   <children>
+      <Label layoutX="275.0" layoutY="41.0" prefHeight="76.0" prefWidth="332.0" text="Welcome User" textFill="#5b260ff7">
+         <font>
+            <Font name="Arial Bold" size="42.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="124.0" layoutY="221.0" prefHeight="350.0" prefWidth="630.0">
+         <content>
+            <FlowPane fx:id="recipeButtonsContainer" prefHeight="392.0" prefWidth="687.0">
+               <children>
+                  <Button fx:id="btnRecipe" minHeight="83.0" minWidth="100.0" mnemonicParsing="false" onAction="#showRecipe" prefHeight="83.0" prefWidth="104.0" text="Chicken Soup" />
+               </children>
+            </FlowPane>
+         </content>
+      </ScrollPane>
+      <TextField fx:id="txtSearch" layoutX="484.0" layoutY="164.0" prefHeight="30.0" prefWidth="178.0" promptText="Enter Ingredient ...." style="-fx-background-radius: 50; -fx-border-radius: 50;" />
+      <Button fx:id="btnSearch" layoutX="677.0" layoutY="163.0" mnemonicParsing="false" onAction="#UsertoSearch" prefHeight="25.0" prefWidth="71.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: #A3D1D1;" text="Search">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCreateRecipe" layoutX="130.0" layoutY="166.0" mnemonicParsing="false" onAction="#UsertoCreateRecipe" prefHeight="25.0" prefWidth="125.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: #A3D1D1;" text="Create Recipe">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnLogOut" layoutX="43.0" layoutY="31.0" mnemonicParsing="false" onAction="#Logout" prefHeight="40.0" prefWidth="97.0" style="-fx-background-color: #FFD1A4; -fx-background-radius: 50; -fx-border-radius: 50;" text="LogOut">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnQuery" layoutX="275.0" layoutY="166.0" mnemonicParsing="false" onAction="#UsertoQuery" prefHeight="27.0" prefWidth="178.0" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: #CECEFF;" text="ChatBot Query">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
