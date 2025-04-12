@@ -3,6 +3,7 @@ package UI_Controller;
 
 import Chatbot.Chatbot;
 import Chatbot.ChatbotChatIF;
+import Chatbot.ChatHistory.ChatSession;
 import Chatbot.CustomADT.ArrayQueue;
 import application.Configure;
 import application.MainController;
@@ -41,6 +42,7 @@ public class ChatBotController {
     private ArrayQueue pq;
     
     private ChatbotChatIF chatbot;
+    
 
     
     @FXML
@@ -94,6 +96,7 @@ public class ChatBotController {
     @FXML
     public void createNewSession(ActionEvent event) {
         Button newSessionButton = new Button("Session " + (SessionVBox.getChildren().size() + 1));
+    	// Create a new button for the session
         newSessionButton.setFont(new Font("Arial", 14));
         newSessionButton.setStyle(
                 "-fx-background-color: #6495ED; " + // background color
@@ -106,10 +109,14 @@ public class ChatBotController {
 
             // Set the width of the button to match the SessionVBox width
             newSessionButton.setPrefWidth(SessionVBox.getWidth());
-
+            
         
         // Add the new session button to the SessionVBox
         SessionVBox.getChildren().add(0, newSessionButton);
+        
+        // Create new session
+        String sessionName = newSessionButton.getText();
+        chatbot.getChatHistory().addChatSession(new ChatSession(sessionName));
     }
     
     @FXML

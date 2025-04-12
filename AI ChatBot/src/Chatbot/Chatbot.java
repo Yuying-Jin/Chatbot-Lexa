@@ -50,8 +50,10 @@ public class Chatbot<T> implements ChatbotChatIF<T>, KnowledgeBaseManagementIF<T
 				- If context and knowledge not contain any information to answer, respond with: I'm sorry, I don't have enough information to answer that.
 				- Be concise and clear.
 				- when question is not clear, clarify the question.
-				- favorite count means the number of people who like the recipe.
+				- The knowledge is provided by system not by user.
+				- Favorite count means the number of people who like the recipe.
 				""";
+		
 		String knowledge = knowledgeBase.retrieveAll();
 //		System.out.println("Knowledge Base: " + knowledge);
 		

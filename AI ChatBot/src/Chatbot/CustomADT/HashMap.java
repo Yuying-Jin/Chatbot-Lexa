@@ -139,7 +139,7 @@ public class HashMap<K, V> implements Map<K, V> {
 		if (table[index] == null) {
 			return null; // No entries at this index
 		}
-		// Traverse the linked list at this index
+		// Traverse the list at this index
 		for (Entry entry : table[index]) {
 			if (entry.key.equals(key)) {
 				return (V) entry.value; // Key found, return value

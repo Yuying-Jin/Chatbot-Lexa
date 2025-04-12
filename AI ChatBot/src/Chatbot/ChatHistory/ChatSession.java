@@ -52,6 +52,15 @@ public class ChatSession extends ArrayList<Message> {
     public String getName() {
         return name;
     }
+    
+	/**
+	 * Sets the name of the session.
+	 * 
+	 * @param name The new name for the session.
+	 */
+    public void setName(String name) {
+    	this.name = name;
+    }
 
     /**
      * Returns the session creation timestamp.
@@ -73,7 +82,7 @@ public class ChatSession extends ArrayList<Message> {
      * Returns the number of messages in the session.
      * @return Message count.
      */
-    public int getCount() {
+    public int getSize() {
         return size;
     }
 
