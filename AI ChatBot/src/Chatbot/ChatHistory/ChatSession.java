@@ -94,13 +94,18 @@ public class ChatSession extends ArrayList<Message> {
         return this; // Since this extends ArrayList<Message>
     }
 
+//    @Override
+//    public String toString() {
+//        return "ChatSession{" +
+//                "name='" + name + '\'' +
+//                ", timestamp=" + timestamp +
+//                ", id=" + id +
+//                ", count=" + size +
+//                '}';
+//    }
+    
     @Override
     public String toString() {
-        return "ChatSession{" +
-                "name='" + name + '\'' +
-                ", timestamp=" + timestamp +
-                ", id=" + id +
-                ", count=" + size +
-                '}';
+    	return getName();
     }
 }

@@ -5,7 +5,9 @@ import Chatbot.CustomADT.ArrayList;
  * Inherits from ArrayList<ChatSession> and implements ChatHistoryIF.
  */
 public class ChatHistory extends ArrayList<ChatSession> implements ChatHistoryIF {
-
+	
+	private ChatSession currentSession;
+	
     @Override
     public void addChatSession(ChatSession session) {
         this.add(session);
@@ -39,6 +41,14 @@ public class ChatHistory extends ArrayList<ChatSession> implements ChatHistoryIF
     public void saveToDatabase() throws Exception {
         System.out.println("Saving " + this.size() + " chat sessions to the database...");
         // Simulate saving
+    }
+    
+    public void setCurrentSession(ChatSession session) {
+        this.currentSession = session;
+    }
+
+    public ChatSession getCurrentSession() {
+        return currentSession;
     }
 
     @Override

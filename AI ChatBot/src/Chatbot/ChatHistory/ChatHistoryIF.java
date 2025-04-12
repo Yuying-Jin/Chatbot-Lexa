@@ -43,7 +43,21 @@ public interface ChatHistoryIF {
     * @throws Exception if an error occurs while saving to the database
      */
     void saveToDatabase() throws Exception;
-
+    
+    /* 
+     * Gets the current chat session.
+     * 
+     * @return The current chat session.
+     */
+    ChatSession getCurrentSession();
+    
+	/**
+	 * Sets the current chat session.
+	 *
+	 * @param session The chat session to set as current.
+	 */
+    void setCurrentSession(ChatSession session);
+    
     /**
      * Returns a string representation of the chat history.
      *

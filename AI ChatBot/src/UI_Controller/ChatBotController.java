@@ -4,6 +4,7 @@ package UI_Controller;
 import Chatbot.Chatbot;
 import Chatbot.ChatbotChatIF;
 import Chatbot.ChatHistory.ChatSession;
+import Chatbot.ChatHistory.Message;
 import Chatbot.CustomADT.ArrayQueue;
 import application.Configure;
 import application.MainController;
@@ -78,7 +79,8 @@ public class ChatBotController {
             MessageVBox.getChildren().add(userMessageContainer);
 
             // Robot's response
-            String botResponse = "Bot: " + chatbot.generateResponse(userQuery);
+            String LLMResponse = chatbot.generateResponse(userQuery);
+            String botResponse = "Bot: " + LLMResponse;
             Text botMessageText = new Text(botResponse);
             botMessageText.setWrappingWidth(MessageVBox.getWidth() - 10);
             botMessageText.setFont(new Font("Arial", 16));
@@ -88,6 +90,12 @@ public class ChatBotController {
 
             // clear TextArea
             txtQuery.clear();
+            
+            // save the conversation to the current session
+            ChatSession currentSession = chatbot.getChatHistory().getCurrentSession();
+            currentSession.add(new Message(Message.SenderType.USER, userQuery));
+            currentSession.add(new Message(Message.SenderType.BOT, LLMResponse));
+
         }
     }
 
@@ -107,16 +115,41 @@ public class ChatBotController {
                 "-fx-background-radius: 5px;"      // rounded corners for the background
             );
 
-            // Set the width of the button to match the SessionVBox width
-            newSessionButton.setPrefWidth(SessionVBox.getWidth());
+        // Set the width of the button to match the SessionVBox width
+        newSessionButton.setPrefWidth(SessionVBox.getWidth());
             
+        // Add an action listener to the button
+		newSessionButton.setOnAction(e -> {
+			// Show the chat history for the selected session
+			int index = SessionVBox.getChildren().indexOf(newSessionButton);
+			ChatSession session = chatbot.getChatHistory().getChatSession(index);
+			chatbot.getChatHistory().setCurrentSession(session);
+			
+			MessageVBox.getChildren().clear();
+			for (Message message : session) {
+			    Text messageText = new Text(message.getContent());
+			    messageText.setWrappingWidth(MessageVBox.getWidth() - 10);
+			    messageText.setFont(new Font("Arial", 16));
+			    StackPane messageContainer = new StackPane(messageText);
+			    // Set the style based on the sender
+			    if (message.getSender().equals(Message.SenderType.USER)) {
+			        messageContainer.setStyle("-fx-background-color: #FFEBCD; -fx-padding: 2px;");
+			    } else {
+			        messageContainer.setStyle("-fx-background-color: #87CEFA; -fx-padding: 2px;");
+			    }
+			    MessageVBox.getChildren().add(messageContainer);
+			}
+
+		});
         
         // Add the new session button to the SessionVBox
         SessionVBox.getChildren().add(0, newSessionButton);
         
         // Create new session
         String sessionName = newSessionButton.getText();
-        chatbot.getChatHistory().addChatSession(new ChatSession(sessionName));
+        ChatSession newSession = new ChatSession(sessionName);
+        chatbot.getChatHistory().addChatSession(newSession);
+        chatbot.getChatHistory().setCurrentSession(newSession); 
     }
     
     @FXML

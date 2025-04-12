@@ -21,10 +21,10 @@ public class Message {
      * @param timestamp The time the message was sent.
      */
 
-    public Message(SenderType sender, String content, LocalDateTime timestamp) {
+    public Message(SenderType sender, String content) {
         this.sender = sender;
         this.content = content;
-        this.timestamp = timestamp; 
+        this.timestamp = LocalDateTime.now();
     }
 
     /**
