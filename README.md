@@ -35,12 +35,12 @@ The system is **domain-agnostic** and can be seamlessly adapted to other applica
 - **Use Case Diagram:**
   Shows how users interact with the chatbot system.
 
-  <img src="./readme/usecase.png" style="zoom:50%;" />
+  <img src="./readme/usecase.png" width="450px"/>
 
 - **Class Diagram:**
   Illustrates the object structure, including chatbot logic, API client, UI components, and data structures.
 
-  ![](./readme/cls.png)
+  <img src="./readme/cls.png" width="600px"/>
 
   This class diagram shows the brief architecture of the AI chatbot system. Data fields and operations are omitted to highlight the core relationships among classes. The main functionality modules include:
 
@@ -83,11 +83,11 @@ The system is **domain-agnostic** and can be seamlessly adapted to other applica
 
 ## 📸 Demo
 
-![](./readme/demo_userhome.png)
+<img src="./readme/demo_userhome.png" width="600px"/>
 
 > Click on the purple `ChatBot Query` button to navigate to the chatbot page.
 
-<img src="./readme/demo_chatbot.png" style="zoom: 60%;" />
+<img src="./readme/demo_chatbot.png" width="600px"/>
 
 > Lexa responding with grounded, knowledge-based answers.
 
